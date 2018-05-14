@@ -25,7 +25,7 @@ OneWire oneWire(DS18B20);
 DallasTemperature ds_sensor(&oneWire);
 
 // Выход реле
-#define RELAY_PIN 2
+#define RELAY_PIN 16
 
 // Выход для управления светодиодной лентой
 #define LED_PIN 12
@@ -44,7 +44,7 @@ Servo servo_motor;
 BlynkTimer timer_update;
 
 // Параметры IoT сервера
-char auth[] = "";
+char auth[] = "ab67064f5d3546308f480323fa125bfd";
 IPAddress blynk_ip(139, 59, 206, 133);
 
 void setup()
@@ -156,7 +156,7 @@ BLYNK_WRITE(V6)
 BLYNK_WRITE(V7)
 {
   // Получение управляющего сигнала с сервера
-  int servo_ctl = constrain((param.asInt() + 90), 90, 135);
+  int servo_ctl = constrain(param.asInt(), 90, 135);
   Serial.print("Servo angle: ");
   Serial.println(servo_ctl);
 
